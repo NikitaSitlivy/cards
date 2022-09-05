@@ -4,10 +4,11 @@
     <formComponent @addProduct='getProduct'/>
     <div class="card-wrap">
     <template v-for="(item, index) in cardData" :key="index">
-      <cardComponent :data="item" />
+      <cardComponent :data="item" :index='index' @deleteCard='deleteCard'/>
     </template>
     </div>
   </div>
+  {{cardData}}
 </template>
 
 <script>
@@ -48,22 +49,22 @@ export default {
     img: 'https://html5book.ru/wp-content/uploads/2014/07/html_images.png'
 
   },
-  {
-    name: 'Наименование товара',
+    {
+    name: 'Наименование товара4',
     text: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     price: '10 000 руб.',
     img: 'https://html5book.ru/wp-content/uploads/2014/07/html_images.png'
 
   },
   {
-    name: 'Наименование товара',
+    name: 'Наименование товара5',
     text: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     price: '10 000 руб.',
     img: 'https://html5book.ru/wp-content/uploads/2014/07/html_images.png'
 
   },
   {
-    name: 'Наименование товара',
+    name: 'Наименование товар6',
     text: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     price: '10 000 руб.',
     img: 'https://html5book.ru/wp-content/uploads/2014/07/html_images.png'
@@ -73,9 +74,13 @@ export default {
 const getProduct = (e) => {
   cardData.value.push(e)
 }
+const deleteCard = (index) => {
+  cardData.value.splice(index, 1)
+}
   return {
     cardData,
-    getProduct
+    getProduct,
+    deleteCard
 
     }
   }
